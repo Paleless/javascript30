@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>4</title>
+    <style type="text/css" media="screen">
+
+    </style>
+</head>
+
+<body>
+    <h1>请打开控制台进行查看</h1>
+    <script type="text/javascript">
+    //构造数据
+    const inventors = [{
+            first: 'Albert',
+            last: 'Einstein',
+            year: 1879,
+            passed: 1955
+        },
+        {
+            first: 'Isaac',
+            last: 'Newton',
+            year: 1643,
+            passed: 1727
+        },
+        {
+            first: 'Galileo',
+            last: 'Galilei',
+            year: 1564,
+            passed: 1642
+        },
+        {
+            first: 'Marie',
+            last: 'Curie',
+            year: 1867,
+            passed: 1934
+        },
+        {
+            first: 'Johannes',
+            last: 'Kepler',
+            year: 1571,
+            passed: 1630
+        },
+        {
+            first: 'Nicolaus',
+            last: 'Copernicus',
+            year: 1473,
+            passed: 1543
+        },
+        {
+            first: 'Max',
+            last: 'Planck',
+            year: 1858,
+            passed: 1947
+        },
+        {
+            first: 'Katherine',
+            last: 'Blodgett',
+            year: 1898,
+            passed: 1979
+        },
+        {
+            first: 'Ada',
+            last: 'Lovelace',
+            year: 1815,
+            passed: 1852
+        },
+        {
+            first: 'Sarah E.',
+            last: 'Goode',
+            year: 1855,
+            passed: 1905
+        },
+        {
+            first: 'Lise',
+            last: 'Meitner',
+            year: 1878,
+            passed: 1968
+        },
+        {
+            first: 'Hanna',
+            last: 'Hammarström',
+            year: 1829,
+            passed: 1909
+        }
+    ];
+
+    // 1. 筛选16世纪出生的发明家
+    /*let target = inventors.filter(ele => {return ele.year > 1500 && ele.year <= 1600})
+    console.log(target);*/
+    // 2. 展示他们的姓名
+    // inventors.forEach(ele => console.log(`${ele.first} ${ele.last}`))
+    // 3. 按出生日期进行升序排序
+    // inventors.sort((a,b)=> a.year-b.year)
+    // 4. 计算所有人年龄之和
+    /*var m=inventors.reduce((prev,cur)=>{
+        var b=cur.passed-cur.year;
+        return prev+b;
+    },0)*/
+    // console.log(m);
+    // 5. 按照寿命进行排序
+    /*  inventors.sort(function (a,b) {
+          return a.passed-a.year-b.passed+b.year;
+      })*/
+
+    // 6. 筛选出下面网页里含有某个词语的标题
+    // https://book.douban.com/tag/web
+    /*const titles=document.getElementsByTagName('a');
+    const titlesArray=Array.from(titles);
+    const target=titlesArray.filter(ele=>ele.innerText.includes('Ja'))*/
+    // 7. sort练习 按照姓氏对发明家进行排序
+    /*const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry',
+        'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert',
+        'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester',
+        'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano',
+        'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle',
+        'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose',
+        'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert',
+        'Blair, Tony', 'Blake, William'
+    ];
+    people.sort((a,b)=>{
+        var aName=a.split(', ')[1],
+            bName=b.split(', ')[1];
+        var i=0;
+        while(aName.charCodeAt(i)===bName.charCodeAt(i)&&i<a.length){
+            i++;
+        }
+        return aName.charCodeAt(i)-bName.charCodeAt(i);
+    })*/
+    // 8. reduce练习 统计给出数组中各个物品的数量
+    /*const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car',
+        'truck', 'pogostick'
+    ];
+    let target = data.reduce((prev, cur) => {
+        if (prev[cur]) {
+            prev[cur]++;
+        } else {
+            prev[cur] = 1;
+        }
+        return prev;
+    }, {})*/
+    </script>
+</body>
+
+</html>
