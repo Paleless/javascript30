@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Type Ahead</title>
+    <link rel="stylesheet" type="text/css" href="demo.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="search-box">
+            <input type="search" value="" placeholder="City or State">
+        </div>
+        <ul class="search-result"></ul>
+    </div>
+    <script type="text/javascript">
+    const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    const search = document.getElementsByClassName('search-box')[0].firstElementChild,
+        result = document.getElementsByClassName('search-result')[0];
+
+    search.oninput = debounce(deal, 1000);
+    //防抖
+    function debounce(fn, delay) {
+        let timer = null;
+        return function() {
+            clearTimeout(timer);
+            var that = this;
+            timer = setTimeout(() => {
+                fn.call(that);
+            }, delay)
+        }
+    }
+    //处理数据
+    function deal() {
+        var keywords = this.value;
+        if (keywords) {
+            fetch(endpoint)
+                .then(res => res.text())
+                .then(data => {
+                    var content = ``;
+                    // 转化数据为类数组
+                    data = JSON.parse(data);
+                    data = Array.from(data);
+                    //筛选数据
+                    data.forEach(ele => {
+                        //拆分字符来进行关键词样式的设置
+                        if (ele.city.includes(keywords) || ele.state.includes(keywords)) {
+                            var city = ele.city.split(keywords).join(`<span>${keywords}</span>`),
+                                state = ele.state.split(keywords).join(`<span>${keywords}</span>`);
+                            content += `<li><p>${city+','+state}</p><p>${ele.population}</p></li>`
+                        }
+                    })
+                    result.innerHTML = content;
+                });
+        } else {
+            result.innerHTML = '';
+        }
+    }
+    </script>
+</body>
+
+</html>
