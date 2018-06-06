@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Canvas</title>
+    <style>
+    html,
+    body {
+        margin: 0;
+    }
+
+    canvas {
+        border: 1px solid red;
+    }
+    </style>
+</head>
+
+<body>
+    <canvas id="draw" width="1600" height="900"></canvas>
+    <script>
+    const drawBoard = document.getElementById('draw');
+    let ctx = drawBoard.getContext('2d');
+    let iDirection = true,
+        bgDirection = true;
+    let i = 100,
+        lastX,
+        lastY,
+        bg = 1;
+
+    //确定画板宽度
+    drawBoard.width = document.body.offsetWidth;
+    drawBoard.height = document.body.offsetHeight;
+
+    //接口样式
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    drawBoard.onmousedown = function(e) {
+        lastX = e.clientX;
+        lastY = e.clientY;
+        drawBoard.onmousemove = function(e) {
+            //处理宽度动态变化
+            if (i === 100 || i === 0) {
+                iDirection = !iDirection;
+            }
+            if (iDirection) {
+                i++;
+            } else {
+                i--;
+            }
+            //处理颜色动态变化
+            if (bg === 255 || bg === 0) {
+                bgDirection = !bgDirection;
+            }
+            if (bgDirection) {
+                bg++;
+            } else {
+                bg--;
+            }
+            //实现画板操作
+            ctx.strokeStyle = `rgb(${bg},20,44)`
+            ctx.lineWidth = i;
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(e.clientX, e.clientY);
+            ctx.stroke();
+            [lastX, lastY] = [e.clientX, e.clientY];
+        }
+        drawBoard.onmouseup = function() {
+            drawBoard.onmousemove = null;
+        }
+        drawBoard.onmouseout = function() {
+            drawBoard.onmousemove = null;
+        }
+    }
+    </script>
+</body>
+
+</html>
