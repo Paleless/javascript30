@@ -39,6 +39,7 @@
             fetch(endpoint)
                 .then(res => res.text())
                 .then(data => {
+                    console.log('success');
                     var content = ``;
                     // 转化数据为类数组
                     data = JSON.parse(data);

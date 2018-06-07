@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hold shift</title>
+    <style type="text/css" media="screen">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+     :root {
+        min-height: 100vh;
+        background-color: orange;
+    }
+
+    .box {
+        width: 400px;
+        border: 1px solid #ccc;
+        box-shadow: 3px 3px 5px;
+        margin: 100px auto;
+    }
+
+    .box-item {
+        box-sizing: border-box;
+        border-top: 1px solid #ccc;
+        font-size: 20px;
+        background: #fff;
+        display: flex;
+    }
+
+    .box-item input {
+        margin: 26px 20px;
+    }
+
+    .box-item span {
+        flex: 1 0;
+        display: block;
+        margin-right: 0;
+        padding: 20px;
+        border-left: 1px solid #ccc;
+        transition: all 0.5s;
+    }
+
+    .box-item input:checked+span {
+        text-decoration: line-through;
+        background-color: #ccc;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="box-item">
+            <input type="checkbox" class='cb'>
+            <span>des</span>
+        </div>
+        <div class="box-item">
+            <input type="checkbox" class='cb'>
+            <span>des</span>
+        </div>
+        <div class="box-item">
+            <input type="checkbox" class='cb'>
+            <span>des</span>
+        </div>
+        <div class="box-item">
+            <input type="checkbox" class='cb'>
+            <span>des</span>
+        </div>
+        <div class="box-item">
+            <input type="checkbox" class='cb'>
+            <span>des</span>
+        </div>
+        <div class="box-item">
+            <input type="checkbox" class='cb'>
+            <span>des</span>
+        </div>
+        <div class="box-item">
+            <input type="checkbox" class='cb'>
+            <span>des</span>
+        </div>
+        <div class="box-item">
+            <input type="checkbox" class='cb'>
+            <span>des</span>
+        </div>
+        <div class="box-item">
+            <input type="checkbox" class='cb'>
+            <span>des</span>
+        </div>
+    </div>
+    <script type="text/javascript">
+    let cb = document.getElementsByClassName('cb');
+    cb = Array.from(cb);
+    let i = 0,
+        j = 0,
+        len = cb.length,
+        chooseKey = false;
+    //通过键位设定锁
+    document.addEventListener('keydown', function(e) {
+        if (e.key === "Shift") {
+            chooseKey = true;
+        }
+    }, false)
+    document.addEventListener('keyup', function(e) {
+        if (e.key === "Shift") {
+            chooseKey = false;
+        }
+    }, false)
+
+    //主功能绑定
+    cb.forEach((ele, index) => {
+        ele.onclick = function() {
+            if (chooseKey) {
+                if (this.checked === true) {
+                    //向上查找
+                    for (i = index - 1; i >= 0; i--) {
+                        if (cb[i].checked === true) {
+                            for (j = i + 1; j < index; j++) {
+                                cb[j].checked = true;
+                            }
+                            break;
+                        }
+                    }
+                    //向下查找
+                    if (i === -1) {
+                        for (i = index + 1; i < len; i++) {
+                            if (cb[i].checked === true) {
+                                for (j = index + 1; j < i; j++) {
+                                    cb[j].checked = true;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>
