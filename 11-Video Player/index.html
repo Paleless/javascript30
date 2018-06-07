@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>viedoPlayer</title>
+    <style type="text/css" media="screen">
+    * {
+        padding: 0;
+        margin: 0;
+
+    }
+    ::selection{
+        user-select: none;
+    }
+
+     :root {
+        height: 100vw;
+        background: linear-gradient(-45deg, royalblue, purple);
+    }
+
+    .player {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 3px 3px 2px;
+        width: 700px;
+        height: 394px;
+        overflow: hidden;
+        font-size: 0;
+    }
+
+    .player video {
+        width: 100%;
+    }
+
+    .control {
+        margin-left: 1px;
+        position: absolute;
+        bottom: -30px;
+        left: 0;
+        z-index: 33;
+        width: 100%;
+        transition: bottom 0.4s ease-in;
+        background-color: #000;
+    }
+
+    .player:hover .control {
+        bottom: 0;
+    }
+
+    .control .progress-bar {
+        height: 14px;
+        background-color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .control .progress-bar .cur-bar {
+        height: 100%;
+        width: 100%;
+        margin-left: -50%;
+        background-color: #20c1bd;
+    }
+
+    .control .btns {
+        display: flex;
+        background-color: rgba(0, 0, 0, 0.5);
+        height: 20px;
+        line-height: 20px;
+    }
+    .btn-play button{
+        box-sizing: border-box;
+        color: #91ceff;
+        height: 100%;
+        width: 30px;
+        padding: 0 3px;
+        line-height: 20px;
+        background: transparent;
+        border: none;
+        border-right: 1px solid #000;
+        outline: none;
+    }
+    .btn-volume,.btn-rate{
+        flex: 1 0;
+        height: 100%;
+        background-color: #fff;
+        position: relative;
+        margin-left: 10px;
+    }
+    .roll {
+        position: absolute;
+        left: 50%;
+        margin: 2.5px;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background: orange;
+        cursor: pointer;
+    }
+    .speed{
+        line-height: 20px;
+        font-size: 10px;
+        color: #fff;
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="player">
+        <video src="后弦 - 海口.mp4"></video>
+        <div class="control">
+            <div class="progress-bar">
+                <div class="cur-bar"></div>
+            </div>
+            <div class="btns">
+                <div class="btn-play">
+                    <button>►</button>
+                </div>
+                <div class="btn-volume">
+                    <div class="roll btn-volume-roll"></div>
+                </div>
+                <div class="btn-rate">
+                    <div class="roll btn-rate-roll"></div>
+                </div>
+                <div class="speed">
+                    <span>+5s</span>
+                    <span>+15s</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+
+</html>
