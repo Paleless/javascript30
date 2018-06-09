@@ -1,0 +1,58 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+::selection{
+    user-select: none;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    text-transform: capitalize;
+    border-radius: 20px;
+    padding: 0 5px;
+    background: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(45deg, blue, pink)
+}
+
+nav {
+    margin-top: 100px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around
+}
+
+
+section {
+   font-size: 20px;
+    width: 80%;
+    margin: 89px auto;
+}
+
+section p {
+    word-break: break-all;
+    margin-top: 30px;
+    line-height: 30px;
+    word-spacing: 3px;
+}
+
+.float-box {
+    background-color: #fff;
+    position: absolute;
+    border-radius: 20px;
+    z-index: -1;
+}
