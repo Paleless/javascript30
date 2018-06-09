@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mouse Shadow</title>
+    <style>
+    html {
+        color: black;
+        font-family: sans-serif;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+    }
+
+    h1 {
+        position: absolute;
+        font-size: 100px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <h1 contenteditable>🔥WOAH!</h1>
+        <h1 contenteditable>🔥WOAH!</h1>
+        <h1 contenteditable>🔥WOAH!</h1>
+        <h1 contenteditable>🔥WOAH!</h1>
+    </div>
+    <script>
+    const text = document.getElementsByTagName('h1');
+    let centerY = text[0].offsetTop + text[0].offsetHeight / 2,
+        centerX = text[0].offsetLeft + text[0].offsetWidth / 2;
+
+    document.onmousemove = throttle(shadowMove,30);
+
+    function shadowMove(e) {
+        var disX=(e.clientX-centerX)/3,
+            disY=(e.clientY-centerY)/3;
+        text[0].style.textShadow = `${disX}px ${disY}px 5px #f40`
+        text[1].style.textShadow = `${-disX}px ${-disY}px 5px #000`
+        text[2].style.textShadow = `${disY}px ${disX}px 5px #84f`
+        text[3].style.textShadow = `${-disY}px ${-disX}px 5px #0f4`
+    }
+
+    //节流
+    function throttle(fn,delay) {
+      let lasttime=+new Date();
+      return function (e) {
+        if(+new Date-lasttime>delay){
+          fn(e);
+          lasttime=+new Date;
+        }
+      }
+    }
+    </script>
+</body>
+
+</html>
