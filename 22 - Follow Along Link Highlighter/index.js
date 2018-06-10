@@ -3,12 +3,18 @@ document.addEventListener('mousemove', cover, false);
 
 function cover(e) {
     if (e.target.tagName === 'A') {
-        startMoveN(floatBox, {
+        //使用js的运动框架实现动画
+        /*startMoveN(floatBox, {
             'left': e.target.offsetLeft,
             'top': e.target.offsetTop,
             'width': e.target.offsetWidth,
             'height': e.target.offsetHeight
-        })
+        })*/
+        //使用css3
+        floatBox.style.left = e.target.offsetLeft + 'px';
+        floatBox.style.top = e.target.offsetTop + 'px';
+        floatBox.style.width = e.target.offsetWidth + 'px';
+        floatBox.style.height = e.target.offsetHeight + 'px';
     }
 }
 

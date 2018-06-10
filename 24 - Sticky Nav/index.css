@@ -1,0 +1,107 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors Your Name (you@example.org)
+ * @date    2018-06-10 11:00:52
+ * @version $Id$
+ */
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #eee;
+}
+
+
+header{
+    height: 300px;
+    line-height: 300px;
+    color: #000;
+    font-size: 30px;
+    text-align: center;
+    background: url(http://wes.io/iEgP/wow-so-deep.jpg) no-repeat;
+    background-position: bottom;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+}
+
+/* 动态切换 */
+nav.active {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+nav ul {
+    height: 65px;
+    line-height: 65px;
+    display: flex;
+    justify-content: center;
+    background: #000;
+    color: #fff;
+    box-shadow:3px 3px;
+}
+
+nav ul li {
+    font-size: 20px;
+    text-align: center;
+    flex: 1 0;
+    font-weight:100;
+    transition: all 0.2s ease-in;
+}
+
+nav ul li.nav-item{
+    flex: 1;
+}
+
+nav ul li.nav-title{
+    background-color: #fff;
+    overflow: hidden;
+    flex: 0 1 0;
+}
+
+/* 动态更改 */
+nav.active ul li.nav-title{
+    flex: 1;
+}
+
+nav ul li.nav-title a{
+    color: #000;
+}
+
+section {
+    width: 40%;
+    margin: 100px auto;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 0 5px 3px #ccc;
+    font-weight: 100;
+    transform: scale(0.97);
+    line-height: 30px;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* 动态更改 */
+nav.active+section {
+    transform: none;
+    margin: 160px auto;
+}
+
+section * {
+    text-indent: 20px;
+    margin:20px 10px;
+    font-size: 20px;
+    word-break: break-all;
+}
+

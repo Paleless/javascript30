@@ -44,7 +44,8 @@ section {
 }
 
 section p {
-    word-break: break-all;
+    /* 会触发bug */
+    /* word-break: break-all; */
     margin-top: 30px;
     line-height: 30px;
     word-spacing: 3px;
@@ -55,4 +56,5 @@ section p {
     position: absolute;
     border-radius: 20px;
     z-index: -1;
+    transition: all 0.5s ease-in-out;
 }
