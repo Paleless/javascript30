@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>cool</title>
+    <style type="text/css" media="screen">
+    * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    body {
+        min-height: 100vh;
+        background: linear-gradient(90deg, deepskyblue, forestgreen);
+    }
+
+
+    .float-box {
+        position: absolute;
+        background-color: #fff;
+        opacity: 0;
+        transition: all 0.5s;
+    }
+
+    .float-box .arrow {
+        position: absolute;
+        top: -10px;
+        transform: translateX(-50%);
+        left: 50%;
+        display: inline-block;
+        border: 10px solid transparent;
+        border-top-width: 0;
+        border-bottom-color: #fff;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: center;
+    }
+
+    nav ul li {
+        height: 30px;
+        line-height: 30px;
+        background-color: #fff;
+        margin: 0 30px;
+        border-radius: 5px;
+        padding: 0 5px;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+    }
+
+    nav ul li>div {
+        position: absolute;
+        margin-top: 60px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        transition: all 0.5s;
+        opacity: 0;
+        display: none;
+    }
+    /* js */
+
+    .float-box.open {
+        opacity: 1;
+    }
+
+    nav ul li.enter>div {
+        display: block;
+    }
+
+    nav ul li.enter.enter-active>div {
+        opacity: 1;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>cool</h1>
+    <nav>
+        <div class="float-box">
+            <span class='arrow'></span>
+        </div>
+        <ul>
+            <li class="nav-item"><a>2018</a>
+                <div class="content">
+                    <p>hello</p>
+                    <p>hello</p>
+                    <p>hello</p>
+                    <p>hello</p>
+                    <p>hello</p>
+                    <p>hello</p>
+                    <p>hello</p>
+                    <p>hello</p>
+                </div>
+            </li>
+            <li class="nav-item"><a>E3</a>
+                <div class="content">
+                    <p>world</p>
+                </div>
+            </li>
+            <li class="nav-item"><a>amazing</a>
+                <div class="content">
+                    <p>kill</p>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <script type="text/javascript">
+    const oFloatBox = document.getElementsByClassName('float-box')[0],
+        oNavItem = Array.from(document.getElementsByClassName('nav-item'));
+
+    function mouseEnter(e) {
+        this.classList.add('enter');
+        setTimeout(() => {
+            this.classList.contains('enter') ? this.classList.add('enter-active') : '';
+        }, 150);
+        oFloatBox.classList.add('open');
+
+        console.log(this.offsetTop,this.offsetLeft)
+
+        let content=this.getElementsByClassName('content')[0];
+        const offset={
+            top:content.offsetTop,
+            left:content.offsetLeft,
+            width:content.offsetWidth,
+            height:content.offsetHeight
+        }
+
+        for(var i in offset) {
+            oFloatBox.style[i]=`${offset[i]}px`;
+        }
+    }
+
+    function mouseLeave(e) {
+        this.classList.remove('enter','enter-active');
+        oFloatBox.classList.remove('open');
+    }
+
+    oNavItem.forEach(ele => {
+        ele.addEventListener('mouseenter', mouseEnter, false)
+        ele.addEventListener('mouseleave', mouseLeave, false)
+    })
+    </script>
+</body>
+
+</html>
