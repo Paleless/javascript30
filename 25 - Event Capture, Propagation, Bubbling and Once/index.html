@@ -48,7 +48,7 @@
         //开启事件捕获(自顶向下)
         // ele.addEventListener('click', logText, true)
         //关闭事件捕获(自底向上)
-        ele.addEventListener('click', logText, {capture:false,once:true})
+        ele.addEventListener('click', logText, {capture:false,once:false})
     })
 
     function logText(e) {

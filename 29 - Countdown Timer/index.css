@@ -1,0 +1,53 @@
+ * {
+     padding: 0;
+     margin: 0;
+     list-style-type: none;
+ }
+
+ body {
+     min-height: 100vh;
+     background: url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-134196.jpg') no-repeat;
+     -webkit-background-size: cover;
+     background-size: cover;
+     display: flex;
+     flex-direction: column;
+ }
+
+ nav ul {
+     display: flex;
+     justify-content: center;
+ }
+
+ nav ul li {
+    text-align: center;
+     flex: 1;
+     height: 40px;
+     line-height: 40px;
+     border: 1px solid #000;
+     color:#000;
+     cursor: pointer;
+     transition: all 0.5s ease-out;
+ }
+
+ nav ul li::selection {
+    user-select: none;
+ }
+
+ nav ul li:hover {
+    background-color: #000;
+    color: #fff;
+ }
+
+ nav ul li.active {
+    background-color: #005792;
+    color: #D9FAFF;
+ }
+
+div.display {
+    flex: 1;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
