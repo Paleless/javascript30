@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>video</title>
+    <meta name="description" content="">
+    <style type="text/css" media="screen">
+    * {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+
+    body {
+        box-sizing: border-box;
+        min-height: 100vh;
+        background: linear-gradient(90deg, skyblue, deeppink);
+        display: flex;
+        justify-content: center;
+        -ms-align-items: center;
+        align-items: center;
+    }
+
+    .player {
+        display: flex;
+        justify-content: center;
+    }
+
+    video {
+        height: 500px;
+    }
+
+    .bar-wra {
+        width: 50px;
+        background-color: #fff;
+        border-radius: 25px;
+        margin-left: 10px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .bar-wra .bar {
+        background: linear-gradient(red, darkblue);
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="player">
+        <video src="http://v4.music.126.net/20180613112229/43d6dda6f780b5eb3a9f44e4439e850f/web/cloudmusic/ICAgMGBiYTAzICBiJWAhJg==/mv/5779986/81805a81f269d711a6c0bdf5d8d5de9f.mp4" controls></video>
+        <div class="bar-wra">
+            <div class="bar">22</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    const vd = document.getElementsByTagName('video')[0],
+        barWra = document.getElementsByClassName('bar-wra')[0],
+        bar = document.getElementsByClassName('bar')[0];
+    //获取位置
+    function getElementPosition(ele) {
+        if (ele.offsetParent.toString() === '[object HTMLBodyElement]' || ele.offsetParent === null) {
+            return {
+                left: ele.offsetLeft,
+                top: ele.offsetTop
+            }
+        } else {
+            return {
+                left: ele.offsetLeft + getElementPosition(ele.offsetParent).left,
+                top: ele.offsetTop + getElementPosition(ele.offsetParent).top
+            }
+        }
+    }
+    //节流
+    function throttle(fn, delay) {
+        let lasttime = +new Date();
+        return function(e) {
+            if (+new Date - lasttime > delay) {
+                let that = this;
+                fn.call(that, e);
+                lasttime = +new Date();
+            }
+        }
+    }
+
+    function mouseMove(e) {
+        let ratePoint = ((e.clientY + scrollY - getElementPosition(this).top) / this.offsetHeight).toFixed(2) * 3;
+        let heightPoint = ratePoint / 3 * 100;
+        bar.style.height = `${heightPoint}%`;
+        bar.innerText = `${ratePoint}X`;
+        vd.playbackRate = ratePoint < 0.1 ? 0.1 : ratePoint;
+    }
+
+
+    barWra.addEventListener('mousemove', throttle(mouseMove, 50), false);
+    </script>
+</body>
+
+</html>
